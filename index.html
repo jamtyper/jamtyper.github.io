@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JamTyper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="theme-color" content="#333333">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/addon/dialog/dialog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/theme/gruvbox-dark.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body onload="brython({debug: 1})">
+<div id="flash"></div>
+<header>
+  <a id="logo" href="/"><h1>JamTyper</h1></a>
+  <nav>
+    <!-- <button id="new"></button> -->
+    <!-- <button id="share"></button> -->
+    <button id="settings"></button>
+    <div id="settings_popup">
+      <h2>Settings</h2>
+      <p>Please edit your settings as JSON string for now.</p>
+      <textarea id="settings_input"></textarea>
+    </div>
+  </nav>
+</header>
+<div id="status"></div>
+<div id="editor"></div>
+<div id="output"><pre></pre></div>
+<footer>
+  <button id="update"></button>
+  <button id="play" class="play"></button>
+  <!-- <button id="reset"></button> -->
+  <label><input id="time" value=""></label>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/keymap/vim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/addon/comment/comment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython_stdlib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+<script src="engine.js"></script>
+<script type="text/python" src="main.py"></script>
+</body>
+</html>
