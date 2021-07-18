@@ -118,9 +118,10 @@ input:hover, input:focus, input:active, textarea:hover, textarea:focus, textarea
 button::after { content: ''; top: 0; right: 0; bottom: 0; left: 0; position: absolute; opacity: 0.5; background-size: 50%; background-repeat: no-repeat; background-position: center; transition: opacity .1s linear; }
 button:hover::after, button:focus::after { opacity: 0.8; }
 button:active::after, button.active::after { opacity: 1.0; }
-#create::after { background-image: url(icons/create.png); }
-#lock::after { background-image: url(icons/lock.png); }
-#fork::after { background-image: url(icons/copy.png); }
+#new::after { background-image: url(icons/create.png); }
+#save::after { background-image: url(icons/lock.png); }
+/* #lock::after { background-image: url(icons/lock.png); } */
+/* #fork::after { background-image: url(icons/copy.png); } */
 #settings::after { background-image: url(icons/settings.png); }
 #update::after { background-image: url(icons/update.png); }
 #reset::after { background-image: url(icons/reset.png); }

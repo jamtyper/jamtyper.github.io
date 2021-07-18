@@ -114,6 +114,7 @@ class Logger:
     self._element.html += f'<p>{message}</p>'
 
   def error(self, message):
+    window.console.log(message)
     window.console.error(message)
     if self._error:
       return
