@@ -102,6 +102,7 @@ header { background: #333; }
 #settings_input { font-family: 'Roboto Mono', monospace; }
 
 #status p { color: #7c5803; background: #fabd2f; border-radius: .3rem; }
+#status p .url, #status p .url:visited { font-family: 'Roboto Mono', monospace; color: #7c5803; text-decoration: none; font-weight: bold; }
 
 #editor { background: #333; border-radius: .3rem; }
 

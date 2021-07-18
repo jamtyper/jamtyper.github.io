@@ -119,8 +119,9 @@ class Logger:
     if self._error:
       return
     self._error = True
-    self._element.html += '<p>An error occured. Please open the ' \
-        'developer tools for more information.</p>'
+    self.info(
+        'An error occured. Please open the '
+        'developer tools for more information.')
 
   def clear(self):
     self._error = False

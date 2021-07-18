@@ -37,6 +37,11 @@ rando = jt.Player(
 rando.at(24, vol=0.6, hpf=0)
 """.strip('\n ')
 
+MESSAGE_SAVED = """
+Song saved under the following URL. You can bookmark this link or share it with
+your friends! <a class="url" href="{0}">{0}</a>
+"""
+
 
 class Interface:
 
@@ -72,15 +77,20 @@ class Interface:
         f'\n- {x[0]} ({x[3]})' for x in self._actions._actions))
 
   def _new(self):
+    self._logger.clear()
     self._editor.set_text(EXAMPLE_SONG)
     window.location.hash = 'unsaved'
     sel('#editor textarea').focus()
+    self._logger.info('Starting a new song.')
 
   def _save(self):
+    self._logger.clear()
     def callback(data):
       # window.console.log(data)
       window.location.hash = data['name']
       sel('#editor textarea').focus()
+      url = 'https://jamtyper.com/#' + data['name']
+      self._logger.info(MESSAGE_SAVED.format(url))
     window.fetch(DATABASE_URL + '.json', {
         'method': 'POST',
         'mode': 'cors',
@@ -91,11 +101,12 @@ class Interface:
         .catch(self._logger.error)
 
   def _load(self):
+    self._logger.clear()
     key = window.location.hash.strip('#')
     def callback(data):
       # window.console.log(data)
-      window.location.hash = key
       self._editor.set_text(data['content'])
+      self._update()
       sel('#editor textarea').focus()
     window.fetch(DATABASE_URL + f'/{key}.json', {
         'method': 'GET',
@@ -106,6 +117,7 @@ class Interface:
         .catch(self._logger.error)
 
   def _update(self):
+    self._logger.clear()
     sel('#editor textarea').focus()
     jamtyper.clear()
     success, output = tools.execute(self._editor.get_text())
