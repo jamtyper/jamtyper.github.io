@@ -80,8 +80,23 @@ class Interface:
     self._logger.clear()
     self._editor.set_text(EXAMPLE_SONG)
     window.location.hash = 'unsaved'
-    sel('#editor textarea').focus()
-    self._logger.info('Starting a new song.')
+    self._logger.info('Started a new song.')
+    self._update()
+
+  def _load(self):
+    self._logger.clear()
+    key = window.location.hash.strip('#')
+    def callback(data):
+      # window.console.log(data)
+      self._editor.set_text(data['content'])
+      self._update()
+    window.fetch(DATABASE_URL + f'/{key}.json', {
+        'method': 'GET',
+        'mode': 'cors',
+    }) \
+        .then(lambda resp: resp.json()) \
+        .then(callback) \
+        .catch(self._logger.error)
 
   def _save(self):
     self._logger.clear()
@@ -100,24 +115,7 @@ class Interface:
         .then(callback) \
         .catch(self._logger.error)
 
-  def _load(self):
-    self._logger.clear()
-    key = window.location.hash.strip('#')
-    def callback(data):
-      # window.console.log(data)
-      self._editor.set_text(data['content'])
-      self._update()
-      sel('#editor textarea').focus()
-    window.fetch(DATABASE_URL + f'/{key}.json', {
-        'method': 'GET',
-        'mode': 'cors',
-    }) \
-        .then(lambda resp: resp.json()) \
-        .then(callback) \
-        .catch(self._logger.error)
-
   def _update(self):
-    self._logger.clear()
     sel('#editor textarea').focus()
     jamtyper.clear()
     success, output = tools.execute(self._editor.get_text())
